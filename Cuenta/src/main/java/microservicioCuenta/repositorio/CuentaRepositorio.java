@@ -16,4 +16,8 @@ public interface CuentaRepositorio extends JpaRepository<Cuenta, Integer> {
 	@Query("UPDATE cuenta c SET c.montos = :montos, c.mercadopago = :mercadopago, c.estado = :estado, c.fechaInicio= :fechaInicio WHERE c.id = :idcuenta")
 	void finalizarCuenta(int idCuenta, String montos, String mercadopago, boolean estado, Date fechaInicio);
 
+	@Transactional
+	@Modifying
+	@Query("UPDATE cuenta c SET c.estado = 'baneada' WHERE c.id = :idCuenta")
+	void inhabilitarCuenta(int idCuenta);
 }

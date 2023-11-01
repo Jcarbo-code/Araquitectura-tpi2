@@ -30,4 +30,9 @@ public class CuentaControlador {
 		//cuentaRepositorio.(c);
 	}
 
+	// cambia el estado de cuenta a baneado
+	@PutMapping("/cuenta/{idCuenta}")
+	public void inhabilitarCuenta(@PathVariable int idCuenta) {
+		cuentaRepositorio.inhabilitarCuenta(idCuenta);
+	}
 }
