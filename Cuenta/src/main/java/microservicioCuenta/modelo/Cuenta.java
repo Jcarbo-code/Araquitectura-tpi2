@@ -13,10 +13,10 @@ import jakarta.persistence.Id;
 @Entity
 public class Cuenta {
 
-	// id viaje
+	// id cuenta
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int idCuenta;
 
 	// fechas de creacion
 	@Column
@@ -46,7 +46,7 @@ public class Cuenta {
 	}
 
 	public int getId() {
-		return id;
+		return idCuenta;
 	}
 
 	public Date getFechaInicio() {
@@ -83,7 +83,7 @@ public class Cuenta {
 
 	@Override
 	public String toString() {
-		return "Cuenta [id=" + id + ", montos=" + montos + ", mercadopago=" + mercadopago 
+		return "Cuenta [idCuenta=" + idCuenta + ", montos=" + montos + ", mercadopago=" + mercadopago 
 		+ ", estado=" + estado + ", fechaInicio=" + fechaInicio + "]";
 	}
 }

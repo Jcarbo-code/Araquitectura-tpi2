@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,17 +18,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import microservicioUsuario.modelo.Usuario;
 import microservicioUsuario.repositorio.UsuarioRepositorio;
+import microservicioUsuario.servicio.UsuarioServicio;
+import microservicioUsuario.dtos.*;
 
 @RestController
 @RequestMapping("/Usuario/usuario")
 public class UsuarioControlador {
 
 	@Autowired
-	private UsuarioRepositorio viajeRepositorio;
+	private UsuarioServicio usuarioServicio;
 
-	// crear viaje listo
+	@Autowired
+	private UsuarioRepositorio UsuarioRepositorio;
+
+	// crear usser listo
 	@PostMapping
 	public void crearUsuario(@RequestBody Usuario u) {
-		//UsuarioRepositorio.save(u);
+		UsuarioRepositorio.save(u);
+	}
+
+	// reporte de u
+	@GetMapping("/reporte/{selector}")
+	public List<Reporte> Reporte(@PathVariable int selector) {
+		return UsuarioServicio.Reporte(selector);
 	}
 }
