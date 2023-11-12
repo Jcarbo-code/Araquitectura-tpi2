@@ -40,6 +40,6 @@ public class UsuarioControlador {
 	// reporte de u
 	@GetMapping("/reporte/{selector}")
 	public List<Reporte> Reporte(@PathVariable int selector) {
-		return UsuarioServicio.Reporte(selector);
+		return usuarioServicio.Reporte(selector);
 	}
 }
