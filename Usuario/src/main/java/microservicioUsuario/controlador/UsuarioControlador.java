@@ -37,9 +37,5 @@ public class UsuarioControlador {
 		UsuarioRepositorio.save(u);
 	}
 
-	// reporte de u
-	@GetMapping("/reporte/{selector}")
-	public List<Reporte> Reporte(@PathVariable int selector) {
-		return usuarioServicio.Reporte(selector);
-	}
+	
 }
