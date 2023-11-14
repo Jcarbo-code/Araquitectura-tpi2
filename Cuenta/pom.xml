@@ -41,6 +41,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.28</version> <!-- Utiliza la versión de MySQL que desees -->
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.28</version><!-- spring.mvc.patmatch.matching-strategy=ant-path-matcher -->
+		</dependency>
 	</dependencies>
 
 	<build>
