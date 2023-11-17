@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import microservicioConfiguracion.dto.PreciosDto;
 import microservicioConfiguracion.modelo.Configuracion;
 import microservicioConfiguracion.repositorio.ConfiguracionRepositorio;
@@ -16,6 +17,7 @@ import microservicioConfiguracion.servicio.ConfiguracionServicio;
 
 @RestController
 @RequestMapping("/Configuracion")
+@Tag(name = "Servicio configuracion", description = "se encarga de todo lo referente a las configuraciones de los precios")
 public class ConfiguracionControlador {
 
 	@Autowired
