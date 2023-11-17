@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import microservicioCuenta.dto.UsuarioDto;
 import microservicioCuenta.modelo.Cuenta;
 import microservicioCuenta.repositorio.CuentaRepositorio;
@@ -17,6 +19,7 @@ import microservicioCuenta.servicio.CuentaServicio;
 
 @RestController
 @RequestMapping("/Cuenta")
+@Tag(name = "Servicio cuenta", description = "se encarga de todo lo referente a las cuentas")
 public class CuentaControlador {
 
 	@Autowired
