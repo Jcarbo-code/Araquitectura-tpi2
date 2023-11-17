@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import microservicioUsuario.dtos.ReporteUso;
 import microservicioUsuario.dtos.UsuarioDto;
 import microservicioUsuario.modelo.Usuario;
@@ -20,6 +21,7 @@ import microservicioUsuario.servicio.UsuarioServicio;
 
 @RestController
 @RequestMapping("/Usuario")
+@Tag(name = "Servicio usuario", description = "se encarga de todo lo referente a los usuarios y la generacion de reportes")
 public class UsuarioControlador {
 
 	@Autowired
