@@ -1,26 +1,29 @@
-package microservicioConfiguracion.dtos;
+package microservicioConfiguracion.dto;
 
 import java.sql.Date;
 import java.sql.Time;
 
 import jakarta.persistence.Column;
 
-public class Reporte {
-	private int id;
+public class PreciosDto {
+	//fecha
+	@Column
 	private Date fechaCambio;
+
+	//hora
 	private Time horaCambio;
+
+	// tarifa precio original
 	private float tarifa1;
+	// tarifa precio pausa
 	private float tarifa2;
 
-	public Reporte(float tarifa1,float tarifa2, Date diaCambio,Time horaCambio) {
+	public PreciosDto(Date fechaCambio, Time horaCambio, float tarifa1, float tarifa2) {
+		super();
+		this.fechaCambio = fechaCambio;
+		this.horaCambio = horaCambio;
 		this.tarifa1 = tarifa1;
 		this.tarifa2 = tarifa2;
-		this.fechaCambio = diaCambio;
-		this.horaCambio = horaCambio;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public Date getFechaCambio() {

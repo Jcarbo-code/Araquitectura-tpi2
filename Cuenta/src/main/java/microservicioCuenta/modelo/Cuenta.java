@@ -1,9 +1,6 @@
 package microservicioCuenta.modelo;
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +21,7 @@ public class Cuenta {
 
 	// castear para usar como cadena de caracteres
 	@Column
-	private String montos;
+	private float monto;
 
 	// VER
 	@Column
@@ -38,8 +35,8 @@ public class Cuenta {
 	public Cuenta() {
 	}
 
-	public Cuenta(String montos, String mercadopago, boolean estado,Date fechaInicio) {
-		this.montos = montos;
+	public Cuenta(float monto, String mercadopago, boolean estado, Date fechaInicio) {
+		this.monto = monto;
 		this.mercadopago = mercadopago;
 		this.estado = estado;
 		this.fechaInicio = fechaInicio;
@@ -53,7 +50,7 @@ public class Cuenta {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(Date f){
+	public void setFechaInicio(Date f) {
 		this.fechaInicio = f;
 	}
 
@@ -61,7 +58,7 @@ public class Cuenta {
 		return estado;
 	}
 
-	public void setEstado(boolean e){
+	public void setEstado(boolean e) {
 		this.estado = e;
 	}
 
@@ -69,21 +66,21 @@ public class Cuenta {
 		return mercadopago;
 	}
 
-	public void setMercadopago(String m){
+	public void setMercadopago(String m) {
 		this.mercadopago = m;
 	}
 
-	public String getMontos() {
-		return montos;
+	public float getMontos() {
+		return monto;
 	}
 
-	public void setMontos(String m){
-		this.montos = m;
+	public void setMontos(float m) {
+		this.monto = m;
 	}
 
 	@Override
 	public String toString() {
-		return "Cuenta [idCuenta=" + idCuenta + ", montos=" + montos + ", mercadopago=" + mercadopago 
-		+ ", estado=" + estado + ", fechaInicio=" + fechaInicio + "]";
+		return "Cuenta [idCuenta=" + idCuenta + ", montos=" + monto + ", mercadopago=" + mercadopago + ", estado="
+				+ estado + ", fechaInicio=" + fechaInicio + "]";
 	}
 }

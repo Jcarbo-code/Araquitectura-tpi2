@@ -1,21 +1,20 @@
-package microservicioUsuario.dtos;
+package microservicioCuenta.dto;
 
-import jakarta.persistence.Column;
-
-public class Reporte {
+public class UsuarioDto {
 	private int cel;
 	private String nombre;
 	private String apellido;
 	private String email;
-	private String pass;
 	private String rol;
+	
+	public UsuarioDto() {
+	}
 
-	public Reporte(int cel, String nombre, String apellido, String email, String pass, String rol) {
+	public UsuarioDto(int cel, String nombre, String apellido, String email, String rol) {
 		this.email = email;
 		this.cel = cel;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.pass = pass;
 		this.rol = rol;
 	}
 
@@ -51,13 +50,6 @@ public class Reporte {
 		this.email = email;
 	}
 	
-	public String getPass() {
-		return pass;
-	}
-	
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
 	
 	public String getRol() {
 		return rol;

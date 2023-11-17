@@ -1,8 +1,6 @@
 package microservicioUsuario.repositorio;
 
-import java.sql.Date;
-import java.sql.Time;
-
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,9 +10,12 @@ import microservicioUsuario.modelo.Usuario;
 
 public interface UsuarioRepositorio extends JpaRepository<Usuario, Integer> {
 
+	@Query("SELECT u FROM Usuario u WHERE u.idCuenta = :idCuenta")
+	List<Usuario> getUsuariosIdCuenta(int idCuenta);
+
 	@Transactional
 	@Modifying
-	@Query("UPDATE Usuario v SET v.cel = :cel, v.nombre = :nombre,v.pass = :pass, v.rol = :rol, v.apellido = :apellido, v.email= :email WHERE v.id = :idViaje")
-	void finalizarViaje(int idViaje, Date fechaFin, Time horaFin, int idParada, float kmReco);
+	@Query("DELETE FROM Usuario u WHERE u.idCuenta = :idCuenta AND u.nombre = :nombre AND u.apellido = :apellido")
+	void borrarUsuario(int idCuenta, String nombre, String apellido);
 
 }

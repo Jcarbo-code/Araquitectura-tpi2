@@ -41,19 +41,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.28</version> <!-- Utiliza la versión de MySQL que desees -->
 		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.28</version> <!-- spring.mvc.patmatch.matching-strategy=ant-path-matcher -->
-		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-boot-starter</artifactId>
-				<version>3.0.0</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

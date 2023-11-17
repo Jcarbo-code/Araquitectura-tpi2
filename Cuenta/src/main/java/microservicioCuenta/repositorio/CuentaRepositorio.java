@@ -13,11 +13,16 @@ public interface CuentaRepositorio extends JpaRepository<Cuenta, Integer> {
 
 	@Transactional
 	@Modifying
-	@Query("UPDATE cuenta c SET c.montos = :montos, c.mercadopago = :mercadopago, c.estado = :estado, c.fechaInicio= :fechaInicio WHERE c.id = :idcuenta")
-	void finalizarCuenta(int idCuenta, String montos, String mercadopago, boolean estado, Date fechaInicio);
+	@Query("UPDATE Cuenta c SET c.monto = :monto, c.mercadopago = :mercadopago, c.estado = :estado, c.fechaInicio= :fechaInicio WHERE c.idCuenta = :idCuenta")
+	void actualizarCuenta(int idCuenta, String monto, String mercadopago, boolean estado, Date fechaInicio);
 
 	@Transactional
 	@Modifying
-	@Query("UPDATE cuenta c SET c.estado = 'baneada' WHERE c.id = :idCuenta")
+	@Query("UPDATE Cuenta c SET c.estado = false WHERE c.idCuenta = :idCuenta")
 	void inhabilitarCuenta(int idCuenta);
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Cuenta c SET c.monto = c.monto + :montoAgregar WHERE c.idCuenta = :idCuenta")
+	void modificarSaldo(float montoAgregar, int idCuenta);
 }

@@ -1,7 +1,6 @@
 package microservicioConfiguracion.repositorio;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,7 +13,7 @@ public interface ConfiguracionRepositorio extends JpaRepository<Configuracion, I
 
 	@Transactional
 	@Modifying
-	@Query("UPDATE configuracion c SET c.fechaCambio = :fechaCambio, c.tarifa1= :tarifa1, c.tarifa2= :tarifa2 WHERE c.id = :idConfiguracion")
+	@Query("UPDATE Configuracion c SET c.fechaCambio = :fechaCambio, c.tarifa1= :tarifa1, c.tarifa2= :tarifa2 WHERE c.id = :idConfiguracion")
 	void finalizarConfiguracion(int idConfiguracion, float tarifa1, float tarifa2, Date fechaCambio);
 
 }

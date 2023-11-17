@@ -1,4 +1,4 @@
-package microservicioUsuario.modelo;
+package microservicioCuenta.modelo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -113,5 +113,4 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [cel=" + cel + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", pass="
 				+ pass + ", rol=" + rol + "]";
-	}
-}
+	}}
