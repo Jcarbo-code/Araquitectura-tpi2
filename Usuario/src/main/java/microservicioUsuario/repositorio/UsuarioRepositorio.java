@@ -13,6 +13,9 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Integer> {
 	@Query("SELECT u FROM Usuario u WHERE u.idCuenta = :idCuenta")
 	List<Usuario> getUsuariosIdCuenta(int idCuenta);
 
+	@Query("SELECT u FROM Usuario u WHERE u.idCuenta = :idCuenta AND u.nombre = :nombre AND u.apellido = :apellido")
+	List<Usuario> getUsuarioNombreApellidoYCuenta(int idCuenta, String nombre, String apellido);
+
 	@Transactional
 	@Modifying
 	@Query("DELETE FROM Usuario u WHERE u.idCuenta = :idCuenta AND u.nombre = :nombre AND u.apellido = :apellido")
