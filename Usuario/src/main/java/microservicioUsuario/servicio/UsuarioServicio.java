@@ -21,7 +21,12 @@ public class UsuarioServicio {
 	private UsuarioRepositorio usuarioRepositorio;
 	@Autowired
 	private ViajeServicio viajeServicio;
-
+	@Autowired
+	private ParadaServicio paradaServicio;
+	@Autowired
+	private ConfiguracionServicio configuracionServicio;
+	@Autowired
+	private MonopatinServicio monopatinServicio;
 	@Autowired
 	private CuentaServicio cuentaServicio;
 
@@ -71,6 +76,21 @@ public class UsuarioServicio {
 		viaje nuevoViaje = new viaje(idUsuario, idParadaInicio, idMonopatin, diaActual, hora);
 		viajeServicio.crearViaje(nuevoViaje);
 		return nuevoViaje;
+	}
+
+	public void crearParada(double latitud, double longitud) {
+		ParadaDto parada = new ParadaDto(latitud, longitud);
+		paradaServicio.CrearParada(parada);
+	}
+
+	public void crearConfiguracion(float precio1, float precio2, Date dia, Time hora) {
+		PreciosDto configuracion = new PreciosDto(dia, hora, precio1, precio2);
+		configuracionServicio.crearConfiguracion(configuracion);
+	}
+
+	public void crearMonopatin(String estado, float latitud, float longitud) {
+		MonopatinDto monopatin = new MonopatinDto(estado, latitud, longitud);
+		monopatinServicio.crearMonopatin(monopatin);
 	}
 
 }

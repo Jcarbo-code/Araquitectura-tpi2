@@ -8,5 +8,20 @@
     "name": "viaje_url",
     "type": "java.lang.String",
     "description": "A description for 'viaje_url'"
+  },
+  {
+    "name": "monopatin_url",
+    "type": "java.lang.String",
+    "description": "A description for 'monopatin_url'"
+  },
+  {
+    "name": "parada_url",
+    "type": "java.lang.String",
+    "description": "A description for 'parada_url'"
+  },
+  {
+    "name": "configuracion_url",
+    "type": "java.lang.String",
+    "description": "A description for 'configuracion_url'"
   }
 ]}

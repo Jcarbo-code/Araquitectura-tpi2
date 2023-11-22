@@ -1,6 +1,7 @@
 package microservicioUsuario.controlador;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,26 +38,31 @@ public class UsuarioControlador {
 
 	// crear usser listo
 	@PostMapping
-	public String crearUsuario(@RequestBody Usuario u,@RequestHeader("Authorization") String authorization) {
-		if (token.autorizado(authorization) == null)
+	public String crearUsuario(@RequestBody Usuario u, @RequestHeader("Authorization") String authorization) {
+		if (token.autorizado(authorization) == null) {
 			return null;
+		}
 		UsuarioRepositorio.save(u);
 		return "Operacion satisfactoria";
 	}
 
 	// traer usuarios asigandos a una cuenta especifica
 	@GetMapping("/traerUsuarios/{idCuenta}")
-	public List<UsuarioDto> traerUsuarios(@PathVariable int idCuenta,@RequestHeader("Authorization") String authorization) {
-		if (token.autorizado(authorization) == null)
+	public List<UsuarioDto> traerUsuarios(@PathVariable int idCuenta,
+			@RequestHeader("Authorization") String authorization) {
+		if (token.autorizado(authorization) == null) {
 			return null;
+		}
 		return usuarioservicio.traerUsuarios(idCuenta);
 	}
 
 	// borra un usuario de una cuenta especifica
 	@DeleteMapping("/borrarUsuario/{idCuenta}/{nombre}/{apellido}")
-	public String BorrarUsuarios(@PathVariable int idCuenta,@RequestHeader("Authorization") String authorization, @PathVariable String nombre, @PathVariable String apellido) {
-		if (token.autorizado(authorization) == null)
+	public String BorrarUsuarios(@PathVariable int idCuenta, @RequestHeader("Authorization") String authorization,
+			@PathVariable String nombre, @PathVariable String apellido) {
+		if (token.autorizado(authorization) == null) {
 			return null;
+		}
 		usuarioservicio.borrarUsuario(idCuenta, nombre, apellido);
 		return "Operacion satisfactoria";
 	}
@@ -64,41 +70,84 @@ public class UsuarioControlador {
 	// iniciarViaje tengo que comunicar este microservicio con viaje y crear un
 	// viaje
 	@PostMapping("/iniciarViaje/{idUsuario/{idParadaInicio}/{idMonopatin")
-	public String iniciarViaje(@PathVariable int idUsuario,@RequestHeader("Authorization") String authorization,@PathVariable int idParadaInicio,@PathVariable int idMonopatin) {
-		if (token.autorizado(authorization) == null)
+	public String iniciarViaje(@PathVariable int idUsuario, @RequestHeader("Authorization") String authorization,
+			@PathVariable int idParadaInicio, @PathVariable int idMonopatin) {
+		if (token.autorizado(authorization) == null) {
 			return null;
-		usuarioservicio.crearViaje(idUsuario,idParadaInicio,idMonopatin);
+		}
+		usuarioservicio.crearViaje(idUsuario, idParadaInicio, idMonopatin);
 		return "Operacion satisfactoria";
 	}
 
 	// tengo que comunicar con viaje
 	@PostMapping("/finalizarViaje/{idViaje}/{idParada}/{kmReco}")
-	public String finalizarViaje(@PathVariable int idViaje,@RequestHeader("Authorization") String authorization,@PathVariable int idParada,@PathVariable float kmReco) {
-		if (token.autorizado(authorization) == null)
+	public String finalizarViaje(@PathVariable int idViaje, @RequestHeader("Authorization") String authorization,
+			@PathVariable int idParada, @PathVariable float kmReco) {
+		if (token.autorizado(authorization) == null) {
 			return null;
-		usuarioservicio.finalizarViaje(idViaje,idParada,kmReco);
+		}
+		usuarioservicio.finalizarViaje(idViaje, idParada, kmReco);
+		return "Operacion satisfactoria";
+	}
+
+	// tengo que comunicar con parada
+	@PostMapping("/crearParada/{latitud}/{longitud}")
+	public String crearParada(@RequestHeader("Authorization") String authorization, @PathVariable double latitud,
+			@PathVariable double longitud) {
+		if (token.autorizado(authorization) == null) {
+			return null;
+		}
+		usuarioservicio.crearParada(latitud, longitud);
+		return "Operacion satisfactoria";
+	}
+
+	// tengo que comunicar con configuracion
+	@PostMapping("/crearConfiguracion/{precio1}/{precio2}/{dia}/{hora}")
+	public String crearConfiguracion(@RequestHeader("Authorization") String authorization, @PathVariable float precio1,
+			@PathVariable float precio2, @PathVariable Date dia, @PathVariable Time hora) {
+		if (token.autorizado(authorization) == null) {
+			return null;
+		}
+		usuarioservicio.crearConfiguracion(precio1, precio2, dia, hora);
+		return "Operacion satisfactoria";
+	}
+
+	// tengo que comunicar con configuracion
+	@PostMapping("/crearMonopatin/{estado}/{latitud}/{longitud}")
+	public String crearMonopatin(@RequestHeader("Authorization") String authorization, @PathVariable String estado,
+			@PathVariable float latitud, @PathVariable float longitud) {
+		if (token.autorizado(authorization) == null) {
+			return null;
+		}
+		usuarioservicio.crearMonopatin(estado, latitud, longitud);
 		return "Operacion satisfactoria";
 	}
 
 	@GetMapping("/reporteUso/{selector}")
-	public List<ReporteUso> reporteUso(@PathVariable int selector,@RequestHeader("Authorization") String authorization) {
-		if (token.autorizado(authorization) == null)
+	public List<ReporteUso> reporteUso(@PathVariable int selector,
+			@RequestHeader("Authorization") String authorization) {
+		if (token.autorizado(authorization) == null) {
 			return null;
+		}
 		return usuarioservicio.reporteUso(selector);
 	}
-	
+
 	@GetMapping("/reporteCantUso/{cantViajes}/{ano}")
-	public List<Integer> reporteCantMonopatinesUso(@PathVariable int cantViajes,@RequestHeader("Authorization") String authorization,@PathVariable int ano) {
-		if (token.autorizado(authorization) == null)
+	public List<Integer> reporteCantMonopatinesUso(@PathVariable int cantViajes,
+			@RequestHeader("Authorization") String authorization, @PathVariable int ano) {
+		if (token.autorizado(authorization) == null) {
 			return null;
-		return usuarioservicio.reporteCantMonopatinesUso(cantViajes,ano);
+		}
+		return usuarioservicio.reporteCantMonopatinesUso(cantViajes, ano);
 	}
-	
+
 	@GetMapping("/reporteGanancias/{fInicio}/{fFin}")
-	public float Reporteganancias(@PathVariable Date fInicio,@RequestHeader("Authorization") String authorization,@PathVariable Date fFin) {
-		if (token.autorizado(authorization) == null)
+	public float Reporteganancias(@PathVariable Date fInicio, @RequestHeader("Authorization") String authorization,
+			@PathVariable Date fFin) {
+		if (token.autorizado(authorization) == null) {
 			return 0;
-		return usuarioservicio.Reporteganancias(fInicio,fFin);
+		}
+		return usuarioservicio.Reporteganancias(fInicio, fFin);
 	}
-	
+
 }
