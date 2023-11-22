@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import microservicioUsuario.dtos.ReporteUso;
+import microservicioUsuario.dtos.ViajeDto;
 import microservicioUsuario.modelo.viaje;
 
 @Service
@@ -27,8 +28,8 @@ public class ViajeServicio {
 	}
 
 	// creacion de viaje falta hacer
-	public void crearViaje(viaje nuevoViaje) {
-		rest.postForEntity(baseUrl, nuevoViaje, viaje.class);
+	public void crearViaje(ViajeDto nuevoViaje) {
+		rest.postForEntity(baseUrl, nuevoViaje, ViajeDto.class);
 	}
 
 	// finaliza el viaje listo

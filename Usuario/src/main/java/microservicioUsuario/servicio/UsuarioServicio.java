@@ -67,13 +67,13 @@ public class UsuarioServicio {
 		return viajeServicio.Reporteganancias(fInicio, fFin);
 	}
 
-	public viaje crearViaje(int idUsuario, int idParadaInicio, int idMonopatin) {
+	public ViajeDto crearViaje(int idUsuario, int idParadaInicio, int idMonopatin) {
 		// aclaracion para que funcione el test de la funcion hay que comentar la linea
 		// del viajeServicio.crearViaje()
 		Date diaActual = Date.valueOf(LocalDate.now());
 		LocalTime horaActual = LocalTime.now();
 		Time hora = Time.valueOf(horaActual);
-		viaje nuevoViaje = new viaje(idUsuario, idParadaInicio, idMonopatin, diaActual, hora);
+		ViajeDto nuevoViaje = new ViajeDto(idUsuario, idParadaInicio, idMonopatin, diaActual, hora);
 		viajeServicio.crearViaje(nuevoViaje);
 		return nuevoViaje;
 	}

@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import microservicioUsuario.dtos.ViajeDto;
 import microservicioUsuario.modelo.viaje;
 import microservicioUsuario.repositorio.UsuarioRepositorio;
 import microservicioUsuario.servicio.UsuarioServicio;
@@ -32,7 +33,7 @@ public class UsuarioUnitarioTest {
 		int idMonopatin = 3;
 
 		// crea y devuelve
-		viaje resultado = usuarioServicio.crearViaje(idUsuario, idParadaInicio, idMonopatin);
+		ViajeDto resultado = usuarioServicio.crearViaje(idUsuario, idParadaInicio, idMonopatin);
 
 		// Assert
 		assertNotNull(resultado);
