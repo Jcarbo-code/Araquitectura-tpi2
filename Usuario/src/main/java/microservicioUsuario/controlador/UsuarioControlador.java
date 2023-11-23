@@ -69,7 +69,7 @@ public class UsuarioControlador {
 
 	// iniciarViaje tengo que comunicar este microservicio con viaje y crear un
 	// viaje
-	@PostMapping("/iniciarViaje/{idUsuario/{idParadaInicio}/{idMonopatin")
+	@PostMapping("/iniciarViaje/{idUsuario}/{idParadaInicio}/{idMonopatin}")
 	public String iniciarViaje(@PathVariable int idUsuario, @RequestHeader("Authorization") String authorization,
 			@PathVariable int idParadaInicio, @PathVariable int idMonopatin) {
 		if (token.autorizado(authorization) == null) {
@@ -135,6 +135,8 @@ public class UsuarioControlador {
 	@GetMapping("/reporteCantUso/{cantViajes}/{ano}")
 	public List<Integer> reporteCantMonopatinesUso(@PathVariable int cantViajes,
 			@RequestHeader("Authorization") String authorization, @PathVariable int ano) {
+		/**
+		 * */
 		if (token.autorizado(authorization) == null) {
 			return null;
 		}
