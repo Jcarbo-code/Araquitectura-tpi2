@@ -19,16 +19,12 @@ import microservicioUsuario.dtos.ReporteUso;
 import microservicioUsuario.dtos.UsuarioDto;
 import microservicioUsuario.modelo.Usuario;
 import microservicioUsuario.repositorio.UsuarioRepositorio;
-import microservicioUsuario.servicio.TokenServicio;
 import microservicioUsuario.servicio.UsuarioServicio;
 
 @RestController
 @RequestMapping("/Usuario")
 @Tag(name = "Servicio usuario", description = "se encarga de todo lo referente a los usuarios y la generacion de reportes")
 public class UsuarioControlador {
-
-	@Autowired
-	private TokenServicio token;
 
 	@Autowired
 	private UsuarioRepositorio UsuarioRepositorio;
@@ -39,9 +35,6 @@ public class UsuarioControlador {
 	// crear usser listo
 	@PostMapping
 	public String crearUsuario(@RequestBody Usuario u, @RequestHeader("Authorization") String authorization) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
 		UsuarioRepositorio.save(u);
 		return "Operacion satisfactoria";
 	}
@@ -50,9 +43,6 @@ public class UsuarioControlador {
 	@GetMapping("/traerUsuarios/{idCuenta}")
 	public List<UsuarioDto> traerUsuarios(@PathVariable int idCuenta,
 			@RequestHeader("Authorization") String authorization) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
 		return usuarioservicio.traerUsuarios(idCuenta);
 	}
 
@@ -60,9 +50,7 @@ public class UsuarioControlador {
 	@DeleteMapping("/borrarUsuario/{idCuenta}/{nombre}/{apellido}")
 	public String BorrarUsuarios(@PathVariable int idCuenta, @RequestHeader("Authorization") String authorization,
 			@PathVariable String nombre, @PathVariable String apellido) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
+
 		usuarioservicio.borrarUsuario(idCuenta, nombre, apellido);
 		return "Operacion satisfactoria";
 	}
@@ -72,9 +60,7 @@ public class UsuarioControlador {
 	@PostMapping("/iniciarViaje/{idUsuario}/{idParadaInicio}/{idMonopatin}")
 	public String iniciarViaje(@PathVariable int idUsuario, @RequestHeader("Authorization") String authorization,
 			@PathVariable int idParadaInicio, @PathVariable int idMonopatin) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
+
 		usuarioservicio.crearViaje(idUsuario, idParadaInicio, idMonopatin);
 		return "Operacion satisfactoria";
 	}
@@ -83,9 +69,7 @@ public class UsuarioControlador {
 	@PostMapping("/finalizarViaje/{idViaje}/{idParada}/{kmReco}")
 	public String finalizarViaje(@PathVariable int idViaje, @RequestHeader("Authorization") String authorization,
 			@PathVariable int idParada, @PathVariable float kmReco) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
+
 		usuarioservicio.finalizarViaje(idViaje, idParada, kmReco);
 		return "Operacion satisfactoria";
 	}
@@ -94,9 +78,6 @@ public class UsuarioControlador {
 	@PostMapping("/crearParada/{latitud}/{longitud}")
 	public String crearParada(@RequestHeader("Authorization") String authorization, @PathVariable double latitud,
 			@PathVariable double longitud) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
 		usuarioservicio.crearParada(latitud, longitud);
 		return "Operacion satisfactoria";
 	}
@@ -105,20 +86,14 @@ public class UsuarioControlador {
 	@PostMapping("/crearConfiguracion/{precio1}/{precio2}/{dia}/{hora}")
 	public String crearConfiguracion(@RequestHeader("Authorization") String authorization, @PathVariable float precio1,
 			@PathVariable float precio2, @PathVariable Date dia, @PathVariable Time hora) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
 		usuarioservicio.crearConfiguracion(precio1, precio2, dia, hora);
 		return "Operacion satisfactoria";
 	}
 
 	// tengo que comunicar con configuracion
 	@PostMapping("/crearMonopatin/{estado}/{latitud}/{longitud}")
-	public String crearMonopatin(@RequestHeader("Authorization") String authorization, @PathVariable String estado,
+	public String crearMonopatin(@PathVariable String estado,
 			@PathVariable float latitud, @PathVariable float longitud) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
 		usuarioservicio.crearMonopatin(estado, latitud, longitud);
 		return "Operacion satisfactoria";
 	}
@@ -126,29 +101,18 @@ public class UsuarioControlador {
 	@GetMapping("/reporteUso/{selector}")
 	public List<ReporteUso> reporteUso(@PathVariable int selector,
 			@RequestHeader("Authorization") String authorization) {
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
 		return usuarioservicio.reporteUso(selector);
 	}
 
 	@GetMapping("/reporteCantUso/{cantViajes}/{ano}")
 	public List<Integer> reporteCantMonopatinesUso(@PathVariable int cantViajes,
 			@RequestHeader("Authorization") String authorization, @PathVariable int ano) {
-		/**
-		 * */
-		if (token.autorizado(authorization) == null) {
-			return null;
-		}
 		return usuarioservicio.reporteCantMonopatinesUso(cantViajes, ano);
 	}
 
 	@GetMapping("/reporteGanancias/{fInicio}/{fFin}")
 	public float Reporteganancias(@PathVariable Date fInicio, @RequestHeader("Authorization") String authorization,
 			@PathVariable Date fFin) {
-		if (token.autorizado(authorization) == null) {
-			return 0;
-		}
 		return usuarioservicio.Reporteganancias(fInicio, fFin);
 	}
 
