@@ -93,4 +93,10 @@ public class UsuarioServicio {
 		monopatinServicio.crearMonopatin(monopatin);
 	}
 
+	
+
+	public List<MonopatinDto> reporteMonopatinesCercanos(float latitud, float longitud, float margen) {
+		return monopatinServicio.reporteMonopatinesCercanos(latitud,longitud,margen);
+	}
+
 }

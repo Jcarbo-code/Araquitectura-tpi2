@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import microservicioUsuario.dtos.MonopatinDto;
 import microservicioUsuario.dtos.ReporteUso;
 import microservicioUsuario.dtos.UsuarioDto;
 import microservicioUsuario.modelo.Usuario;
@@ -92,10 +93,16 @@ public class UsuarioControlador {
 
 	// tengo que comunicar con configuracion
 	@PostMapping("/crearMonopatin/{estado}/{latitud}/{longitud}")
-	public String crearMonopatin(@PathVariable String estado,
-			@PathVariable float latitud, @PathVariable float longitud) {
+	public String crearMonopatin(@PathVariable String estado, @PathVariable float latitud,
+			@PathVariable float longitud) {
 		usuarioservicio.crearMonopatin(estado, latitud, longitud);
 		return "Operacion satisfactoria";
+	}
+
+	@GetMapping("/reporteUso/{latitud}/{longitud}/{margen}")
+	public List<MonopatinDto> reporteMonopatinesCercanos(@PathVariable float latitud, @PathVariable float longitud,
+			@PathVariable float margen, @RequestHeader("Authorization") String authorization) {
+		return usuarioservicio.reporteMonopatinesCercanos(latitud,longitud,margen);
 	}
 
 	@GetMapping("/reporteUso/{selector}")
